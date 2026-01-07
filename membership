@@ -1,0 +1,27 @@
+public class Membership {
+    private int membershipId;
+    private String type;
+    private double price;
+    private int durationMonths;
+
+    public Membership(int membershipId, String type, double price, int durationMonths) {
+        this.membershipId = membershipId;
+        this.type = type;
+        this.price = price;
+        this.durationMonths = durationMonths;
+    }
+
+    public void applyDiscount(double percent) {
+        double discounted = price * (1 - percent / 100);
+        System.out.println("After discount: " + discounted + " KZT");
+    }
+
+    public String getInfo() {
+        String info = "[Membership] " + type + " (ID: " + membershipId + ", Price: " + price +
+                " KZT, Duration: " + durationMonths + " months)";
+        if (type.equalsIgnoreCase("Premium")) {
+            info += " ✨";
+        }
+        return info;
+    }
+}
