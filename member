@@ -1,0 +1,29 @@
+public class Member {
+    private int memberId;
+    private String name;
+    private int age;
+    private String membershipType;
+
+    public Member(int memberId, String name, int age, String membershipType) {
+        this.memberId = memberId;
+        this.name = name;
+        this.age = age;
+        this.membershipType = membershipType;
+    }
+
+    public void perform() {
+        if (membershipType.equalsIgnoreCase("Premium")) {
+            System.out.println(name + " is exercising. 🏋️‍♂️ Fitness Enthusiast!");
+        } else {
+            System.out.println(name + " is exercising.");
+        }
+    }
+
+    public String getInfo() {
+        String info = "[Member] " + name + " (ID: " + memberId + ", Age: " + age + ", Membership: " + membershipType + ")";
+        if (membershipType.equalsIgnoreCase("Premium")) {
+            info += " 🏋️‍♂️";
+        }
+        return info;
+    }
+}
