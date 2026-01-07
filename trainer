@@ -1,0 +1,30 @@
+public class Trainer {
+    private int trainerId;
+    private String name;
+    private String specialization;
+    private int experienceYears;
+
+    public Trainer(int trainerId, String name, String specialization, int experienceYears) {
+        this.trainerId = trainerId;
+        this.name = name;
+        this.specialization = specialization;
+        this.experienceYears = experienceYears;
+    }
+
+    public void perform() {
+        if (experienceYears >= 7) {
+            System.out.println("Trainer " + name + " is coaching " + specialization + " exercises. 💪 Expert Trainer!");
+        } else {
+            System.out.println("Trainer " + name + " is coaching " + specialization + " exercises.");
+        }
+    }
+
+    public String getInfo() {
+        String info = "[Trainer] " + name + " (ID: " + trainerId + ", Specialization: " + specialization +
+                ", Experience: " + experienceYears + " years)";
+        if (experienceYears >= 7) {
+            info += " 💪";
+        }
+        return info;
+    }
+}
