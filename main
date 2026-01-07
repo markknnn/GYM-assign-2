@@ -1,0 +1,156 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    private static List<Member> members = new ArrayList<>();
+    private static List<Trainer> trainers = new ArrayList<>();
+    private static List<Membership> memberships = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        members.add(new Member(101, "Alex", 20, "Basic"));
+        members.add(new Member(102, "Maya", 25, "Premium"));
+        members.add(new Member(103, "Leo", 30, "Premium"));
+
+        trainers.add(new Trainer(201, "James", "Fitness", 6));
+        trainers.add(new Trainer(202, "Lina", "Yoga", 8));
+        trainers.add(new Trainer(203, "Mark", "Cardio", 10));
+
+        memberships.add(new Membership(301, "Basic", 15000, 3));
+        memberships.add(new Membership(302, "Premium", 30000, 6));
+        memberships.add(new Membership(303, "VIP", 50000, 12));
+
+        int choice;
+        do {
+            printMenu();
+            choice = Integer.parseInt(scanner.nextLine());
+
+            switch (choice) {
+                case 1 -> addMember();
+                case 2 -> addTrainer();
+                case 3 -> addMembership();
+                case 4 -> viewAllMembers();
+                case 5 -> viewAllTrainers();
+                case 6 -> viewAllMemberships();
+                case 7 -> performAll();
+                case 0 -> System.out.println("Exiting... Bye! 👋");
+                default -> System.out.println("Invalid choice. Try again.");
+            }
+        } while (choice != 0);
+    }
+
+    private static void printMenu() {
+        System.out.println("========================================");
+        System.out.println("GYM MANAGEMENT SYSTEM");
+        System.out.println("========================================");
+        System.out.println("1. Add Member");
+        System.out.println("2. Add Trainer");
+        System.out.println("3. Add Membership");
+        System.out.println("4. View Members");
+        System.out.println("5. View Trainers");
+        System.out.println("6. View Memberships");
+        System.out.println("7. Make All Work");
+        System.out.println("0. Exit");
+        System.out.println("========================================");
+        System.out.print("Enter your choice: ");
+    }
+
+    private static void addMember() {
+        System.out.print("Enter Member ID: ");
+        int id = Integer.parseInt(scanner.nextLine());
+        System.out.print("Enter Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter Age: ");
+        int age = Integer.parseInt(scanner.nextLine());
+        System.out.print("Enter Membership Type: ");
+        String type = scanner.nextLine();
+
+        members.add(new Member(id, name, age, type));
+        System.out.println("Member added successfully! ✨");
+        pause();
+    }
+
+    private static void addTrainer() {
+        System.out.print("Enter Trainer ID: ");
+        int id = Integer.parseInt(scanner.nextLine());
+        System.out.print("Enter Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter Specialization: ");
+        String spec = scanner.nextLine();
+        System.out.print("Enter Experience Years: ");
+        int exp = Integer.parseInt(scanner.nextLine());
+
+        trainers.add(new Trainer(id, name, spec, exp));
+        System.out.println("Trainer added successfully! 💪");
+        pause();
+    }
+
+    private static void addMembership() {
+        System.out.print("Enter Membership ID: ");
+        int id = Integer.parseInt(scanner.nextLine());
+        System.out.print("Enter Type: ");
+        String type = scanner.nextLine();
+        System.out.print("Enter Price: ");
+        double price = Double.parseDouble(scanner.nextLine());
+        System.out.print("Enter Duration (months): ");
+        int dur = Integer.parseInt(scanner.nextLine());
+
+        memberships.add(new Membership(id, type, price, dur));
+        System.out.println("Membership added successfully! 🏋️");
+        pause();
+    }
+
+    private static void viewAllMembers() {
+        System.out.println("========================================");
+        System.out.println("MEMBERS LIST");
+        System.out.println("========================================");
+        int index = 1;
+        for (Member m : members) {
+            System.out.println(index + ". " + m.getInfo());
+            index++;
+        }
+        pause();
+    }
+
+    private static void viewAllTrainers() {
+        System.out.println("========================================");
+        System.out.println("TRAINERS LIST");
+        System.out.println("========================================");
+        int index = 1;
+        for (Trainer t : trainers) {
+            System.out.println(index + ". " + t.getInfo());
+            index++;
+        }
+        pause();
+    }
+
+    private static void viewAllMemberships() {
+        System.out.println("========================================");
+        System.out.println("MEMBERSHIPS LIST");
+        System.out.println("========================================");
+        int index = 1;
+        for (Membership m : memberships) {
+            System.out.println(index + ". " + m.getInfo());
+            index++;
+        }
+        pause();
+    }
+
+    private static void performAll() {
+        System.out.println("========================================");
+        System.out.println("POLYMORPHISM DEMONSTRATION");
+        System.out.println("========================================");
+        System.out.println("Members performing:");
+        for (Member m : members) m.perform();
+        System.out.println("Trainers performing:");
+        for (Trainer t : trainers) t.perform();
+        System.out.println("✨ Same method names, different behavior!");
+        pause();
+    }
+
+    private static void pause() {
+        System.out.print("Press Enter to continue...");
+        scanner.nextLine();
+    }
+}
